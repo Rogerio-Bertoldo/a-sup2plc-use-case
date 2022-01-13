@@ -1,0 +1,176 @@
+FUNCTION_BLOCK SUPERVISOR_FB
+VAR_INPUT
+(* HAPPENED EVENTS *)
+a_h : BOOL;
+g_h : BOOL;
+h_h : BOOL;
+j_h : BOOL;
+e_h : BOOL;
+f_h : BOOL;
+d_h : BOOL;
+
+END_VAR
+VAR_OUTPUT
+(* ENABLERS *)
+a_e : BOOL := false;
+g_e : BOOL := false;
+h_e : BOOL := false;
+j_e : BOOL := false;
+e_e : BOOL := false;
+f_e : BOOL := false;
+d_e : BOOL := false;
+
+END_VAR
+VAR
+(* TRIGGERS FOR EVENT DETECTION *)
+a_t : R_TRIG;
+g_t : R_TRIG;
+h_t : R_TRIG;
+j_t : R_TRIG;
+e_t : R_TRIG;
+f_t : R_TRIG;
+d_t : R_TRIG;
+
+(* CONTINUE SEARCH VAR *)
+continueSearch : BOOL := true;
+(* STATE BOOL VARS *)
+S0_P0_Q0 : BOOL := false;
+S1_P0_Q2 : BOOL := false;
+S1_P0_Q3 : BOOL := false;
+S1_P0_Q5 : BOOL := false;
+S1_P0_Q6 : BOOL := false;
+S1_P1_Q0 : BOOL := false;
+S1_P1_Q1 : BOOL := false;
+S1_P1_Q4 : BOOL := false;
+
+(*FIRST TIME VAR*)
+firstTime : BOOL := true;
+END_VAR
+BEGIN
+IF firstTime THEN
+S0_P0_Q0:=true;
+a_e:=true;
+
+END_IF;
+
+(*READING INPUT EVENTS*)
+a_t(CLK:=a_h);
+g_t(CLK:=g_h);
+h_t(CLK:=h_h);
+j_t(CLK:=j_h);
+e_t(CLK:=e_h);
+f_t(CLK:=f_h);
+d_t(CLK:=d_h);
+(*DETECTING EVENTS, STATE UPDATE, OUTPUT ENABLING*)
+IF a_t.Q THEN
+continueSearch:=true;
+IF continueSearch AND S0_P0_Q0 THEN 
+S0_P0_Q0:=false;
+a_e:=false;
+
+S1_P1_Q0:=true;
+e_e:=true;
+f_e:=true;
+
+continueSearch:=false;
+END_IF;
+END_IF;
+IF g_t.Q THEN
+continueSearch:=true;
+IF continueSearch AND S1_P0_Q2 THEN 
+S1_P0_Q2:=false;
+g_e:=false;
+
+S1_P0_Q3:=true;
+h_e:=true;
+
+continueSearch:=false;
+END_IF;
+IF continueSearch AND S1_P0_Q5 THEN 
+S1_P0_Q5:=false;
+g_e:=false;
+
+S1_P0_Q6:=true;
+j_e:=true;
+
+continueSearch:=false;
+END_IF;
+END_IF;
+IF h_t.Q THEN
+continueSearch:=true;
+IF continueSearch AND S1_P0_Q3 THEN 
+S1_P0_Q3:=false;
+h_e:=false;
+
+S0_P0_Q0:=true;
+a_e:=true;
+
+continueSearch:=false;
+END_IF;
+END_IF;
+IF j_t.Q THEN
+continueSearch:=true;
+IF continueSearch AND S1_P0_Q6 THEN 
+S1_P0_Q6:=false;
+j_e:=false;
+
+S0_P0_Q0:=true;
+a_e:=true;
+
+continueSearch:=false;
+END_IF;
+END_IF;
+IF e_t.Q THEN
+continueSearch:=true;
+IF continueSearch AND S1_P1_Q0 THEN 
+S1_P1_Q0:=false;
+e_e:=false;
+f_e:=false;
+
+S1_P1_Q1:=true;
+d_e:=true;
+
+continueSearch:=false;
+END_IF;
+END_IF;
+IF f_t.Q THEN
+continueSearch:=true;
+IF continueSearch AND S1_P1_Q0 THEN 
+S1_P1_Q0:=false;
+e_e:=false;
+f_e:=false;
+
+S1_P1_Q4:=true;
+d_e:=true;
+
+continueSearch:=false;
+END_IF;
+END_IF;
+IF d_t.Q THEN
+continueSearch:=true;
+IF continueSearch AND S1_P1_Q1 THEN 
+S1_P1_Q1:=false;
+d_e:=false;
+
+S1_P0_Q2:=true;
+g_e:=true;
+
+continueSearch:=false;
+END_IF;
+IF continueSearch AND S1_P1_Q4 THEN 
+S1_P1_Q4:=false;
+d_e:=false;
+
+S1_P0_Q5:=true;
+g_e:=true;
+
+continueSearch:=false;
+END_IF;
+END_IF;
+
+
+IF firstTime THEN
+firstTime:=false;
+END_IF;
+
+END_FUNCTION_BLOCK
