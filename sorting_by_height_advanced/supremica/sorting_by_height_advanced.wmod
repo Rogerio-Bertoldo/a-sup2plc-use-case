@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Module xmlns="http://waters.sourceforge.net/xsd/module" xmlns:B="http://waters.sourceforge.net/xsd/base" Name="sorting_by_height_advanced_refactor">
+<EventDeclList>
+<EventDecl Kind="PROPOSITION" Name=":accepting"/>
+<EventDecl Kind="CONTROLLABLE" Name="a"/>
+<EventDecl Kind="CONTROLLABLE" Name="c"/>
+<EventDecl Kind="CONTROLLABLE" Name="d"/>
+<EventDecl Kind="CONTROLLABLE" Name="f"/>
+<EventDecl Kind="CONTROLLABLE" Name="e"/>
+<EventDecl Kind="CONTROLLABLE" Name="g"/>
+<EventDecl Kind="CONTROLLABLE" Name="h"/>
+<EventDecl Kind="CONTROLLABLE" Name="i"/>
+<EventDecl Kind="CONTROLLABLE" Name="j"/>
+<EventDecl Kind="CONTROLLABLE" Name="k"/>
+<EventDecl Kind="CONTROLLABLE" Name="l"/>
+<EventDecl Kind="CONTROLLABLE" Name="m"/>
+<EventDecl Kind="CONTROLLABLE" Name="n"/>
+<EventDecl Kind="CONTROLLABLE" Name="o"/>
+<EventDecl Kind="CONTROLLABLE" Name="p"/>
+<EventDecl Kind="CONTROLLABLE" Name="q"/>
+<EventDecl Kind="CONTROLLABLE" Name="r"/>
+<EventDecl Kind="CONTROLLABLE" Name="s"/>
+<EventDecl Kind="CONTROLLABLE" Name="t"/>
+<EventDecl Kind="CONTROLLABLE" Name="b"/>
+<EventDecl Kind="PROPOSITION" Name=":forbidden"/>
+</EventDeclList>
+<ComponentList>
+<SimpleComponent Kind="PLANT" Name="G1">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="57" Y="57"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="119" Y="119"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="a"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="80" Y="96"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="h"/>
+<SimpleIdentifier Name="j"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="96" Y="80"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="G2">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="P0">
+<PointGeometry>
+<Point X="56" Y="57"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="P1">
+<PointGeometry>
+<Point X="117" Y="121"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="P0" Target="P1">
+<LabelBlock>
+<SimpleIdentifier Name="a"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="78" Y="97"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="P1" Target="P0">
+<LabelBlock>
+<SimpleIdentifier Name="d"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="94" Y="81"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="G3">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="Q0">
+<PointGeometry>
+<Point X="162" Y="201"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Q1">
+<PointGeometry>
+<Point X="61" Y="262"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Q2">
+<PointGeometry>
+<Point X="69" Y="346"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Q3">
+<PointGeometry>
+<Point X="148" Y="316"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Q4">
+<PointGeometry>
+<Point X="263" Y="145"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Q5">
+<PointGeometry>
+<Point X="260" Y="60"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Q6">
+<PointGeometry>
+<Point X="179" Y="85"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="Q0" Target="Q1">
+<LabelBlock>
+<SimpleIdentifier Name="e"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="106" Y="229"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Q1" Target="Q2">
+<LabelBlock>
+<SimpleIdentifier Name="d"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="56" Y="308"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Q2" Target="Q3">
+<LabelBlock>
+<SimpleIdentifier Name="g"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="108" Y="340"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Q4" Target="Q5">
+<LabelBlock>
+<SimpleIdentifier Name="d"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="270" Y="98"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Q5" Target="Q6">
+<LabelBlock>
+<SimpleIdentifier Name="g"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="220" Y="63"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Q3" Target="Q0">
+<LabelBlock>
+<SimpleIdentifier Name="h"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="158" Y="262"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Q0" Target="Q4">
+<LabelBlock>
+<SimpleIdentifier Name="f"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="217" Y="175"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Q6" Target="Q0">
+<LabelBlock>
+<SimpleIdentifier Name="j"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="166" Y="139"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SUPERVISOR" Name="sup(G1||G2||G3)">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0.P0.Q0">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="241" Y="162"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S0.P0.Q1">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+<SimpleIdentifier Name=":forbidden"/>
+</EventList>
+<PointGeometry>
+<Point X="293" Y="62"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S0.P0.Q4">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+<SimpleIdentifier Name=":forbidden"/>
+</EventList>
+<PointGeometry>
+<Point X="182" Y="239"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.P0.Q2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="456" Y="128"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.P0.Q3">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="398" Y="183"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.P0.Q5">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="54" Y="262"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.P0.Q6">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="91" Y="176"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.P1.Q0">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="274" Y="220"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.P1.Q1">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="362" Y="110"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.P1.Q4">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="153" Y="290"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0.P0.Q0" Target="S0.P0.Q1">
+<LabelBlock>
+<SimpleIdentifier Name="e"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="263" Y="104"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.P0.Q0" Target="S0.P0.Q4">
+<LabelBlock>
+<SimpleIdentifier Name="f"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="208" Y="198"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.P0.Q0" Target="S1.P1.Q0">
+<LabelBlock>
+<SimpleIdentifier Name="a"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="S0.P0.Q1" Target="S1.P1.Q1">
+<LabelBlock>
+<SimpleIdentifier Name="a"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="330" Y="77"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.P0.Q4" Target="S1.P1.Q4">
+<LabelBlock>
+<SimpleIdentifier Name="a"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="S1.P0.Q2" Target="S1.P0.Q3">
+<LabelBlock>
+<SimpleIdentifier Name="g"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="436" Y="158"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.P0.Q3" Target="S0.P0.Q0">
+<LabelBlock>
+<SimpleIdentifier Name="h"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="S1.P0.Q5" Target="S1.P0.Q6">
+<LabelBlock>
+<SimpleIdentifier Name="g"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="62" Y="218"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.P0.Q6" Target="S0.P0.Q0">
+<LabelBlock>
+<SimpleIdentifier Name="j"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="160" Y="162"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.P1.Q0" Target="S1.P1.Q1">
+<LabelBlock>
+<SimpleIdentifier Name="e"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="324" Y="165"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.P1.Q0" Target="S1.P1.Q4">
+<LabelBlock>
+<SimpleIdentifier Name="f"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="216" Y="268"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.P1.Q1" Target="S1.P0.Q2">
+<LabelBlock>
+<SimpleIdentifier Name="d"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="416" Y="113"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.P1.Q4" Target="S1.P0.Q5">
+<LabelBlock>
+<SimpleIdentifier Name="d"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="96" Y="285"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SUPERVISOR" Name="sup(sup(G1||G2||G3))">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0.P0.Q0">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="S1.P0.Q2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="S1.P0.Q3">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="S1.P0.Q5">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="S1.P0.Q6">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="S1.P1.Q0">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="S1.P1.Q1">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="S1.P1.Q4">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0.P0.Q0" Target="S1.P1.Q0">
+<LabelBlock>
+<SimpleIdentifier Name="a"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S1.P0.Q2" Target="S1.P0.Q3">
+<LabelBlock>
+<SimpleIdentifier Name="g"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S1.P0.Q3" Target="S0.P0.Q0">
+<LabelBlock>
+<SimpleIdentifier Name="h"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S1.P0.Q5" Target="S1.P0.Q6">
+<LabelBlock>
+<SimpleIdentifier Name="g"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S1.P0.Q6" Target="S0.P0.Q0">
+<LabelBlock>
+<SimpleIdentifier Name="j"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S1.P1.Q0" Target="S1.P1.Q1">
+<LabelBlock>
+<SimpleIdentifier Name="e"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S1.P1.Q0" Target="S1.P1.Q4">
+<LabelBlock>
+<SimpleIdentifier Name="f"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S1.P1.Q1" Target="S1.P0.Q2">
+<LabelBlock>
+<SimpleIdentifier Name="d"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S1.P1.Q4" Target="S1.P0.Q5">
+<LabelBlock>
+<SimpleIdentifier Name="d"/>
+</LabelBlock>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+</ComponentList>
+</Module>
