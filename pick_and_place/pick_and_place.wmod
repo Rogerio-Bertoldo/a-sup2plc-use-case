@@ -1,0 +1,1453 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Module xmlns="http://waters.sourceforge.net/xsd/module" xmlns:B="http://waters.sourceforge.net/xsd/base" Name="pick_and_place">
+<B:Comment>Classical example of uncontrollable specfication. Adapted from 'Supervisory Control of a Class of Discrete Event Processes' by P. Ramadge and M. Wonham</B:Comment>
+<EventDeclList>
+<EventDecl Kind="PROPOSITION" Name=":accepting"/>
+<EventDecl Kind="CONTROLLABLE" Name="turn_off1"/>
+<EventDecl Kind="CONTROLLABLE" Name="turn_on1"/>
+<EventDecl Kind="CONTROLLABLE" Name="turn_off2"/>
+<EventDecl Kind="CONTROLLABLE" Name="turn_on2"/>
+<EventDecl Kind="CONTROLLABLE" Name="move_arm_down"/>
+<EventDecl Kind="CONTROLLABLE" Name="grab"/>
+<EventDecl Kind="CONTROLLABLE" Name="move_arm_up"/>
+<EventDecl Kind="CONTROLLABLE" Name="move_arm_forward"/>
+<EventDecl Kind="CONTROLLABLE" Name="move_arm_down2"/>
+<EventDecl Kind="CONTROLLABLE" Name="drop"/>
+<EventDecl Kind="CONTROLLABLE" Name="move_arm_back"/>
+</EventDeclList>
+<ComponentList>
+<SimpleComponent Kind="PLANT" Name="entry_conveyor">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="idle">
+<PointGeometry>
+<Point X="57" Y="56"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-43" Y="-4"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="delivering">
+<PointGeometry>
+<Point X="121" Y="117"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="1" Y="9"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="idle" Target="delivering">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on1"/>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="-13"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="58" Y="57"/>
+</StartPointGeometry>
+<SplineGeometry>
+<Point X="97" Y="78"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="delivering" Target="idle">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off1"/>
+<LabelGeometry Anchor="NW">
+<Point X="-56" Y="2"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="81" Y="94"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="robot">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="idle">
+<PointGeometry>
+<Point X="56" Y="124"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="7" Y="2"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="item_grabbed">
+<PointGeometry>
+<Point X="229" Y="75"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="8" Y="-12"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="arm_up">
+<PointGeometry>
+<Point X="279" Y="163"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="10" Y="-8"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="arm_forward">
+<PointGeometry>
+<Point X="241" Y="255"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="11" Y="-5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="arm_down_at_exit">
+<PointGeometry>
+<Point X="145" Y="282"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-42" Y="7"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="arm_up_at_exit">
+<PointGeometry>
+<Point X="63" Y="224"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-96" Y="-7"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="arm_down">
+<PointGeometry>
+<Point X="130" Y="58"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-26" Y="-26"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="item_grabbed" Target="arm_up">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_up"/>
+<LabelGeometry Anchor="NW">
+<Point X="7" Y="-12"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="261" Y="115"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="arm_up" Target="arm_forward">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_forward"/>
+<LabelGeometry Anchor="NW">
+<Point X="6" Y="-8"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="267" Y="212"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="arm_forward" Target="arm_down_at_exit">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_down2"/>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="-1"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="195" Y="276"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="arm_down_at_exit" Target="arm_up_at_exit">
+<LabelBlock>
+<SimpleIdentifier Name="drop"/>
+<LabelGeometry Anchor="NW">
+<Point X="-37" Y="0"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="100" Y="259"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="idle" Target="arm_down">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_down"/>
+<LabelGeometry Anchor="NW">
+<Point X="-91" Y="-28"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="88" Y="85"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="arm_down" Target="item_grabbed">
+<LabelBlock>
+<SimpleIdentifier Name="grab"/>
+<LabelGeometry Anchor="NW">
+<Point X="-4" Y="-23"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="181" Y="59"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="arm_up_at_exit" Target="idle">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_back"/>
+<LabelGeometry Anchor="NW">
+<Point X="-101" Y="-12"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="52" Y="174"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SPEC" Name="robot_entry_conv">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="67" Y="68"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="69" Y="163"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2">
+<PointGeometry>
+<Point X="163" Y="68"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S3">
+<PointGeometry>
+<Point X="163" Y="162"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_up"/>
+<LabelGeometry Anchor="NW">
+<Point X="-86" Y="1"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="58" Y="115"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on1"/>
+<LabelGeometry Anchor="NW">
+<Point X="-11" Y="-27"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="115" Y="58"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2" Target="S3">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off1"/>
+<LabelGeometry Anchor="NW">
+<Point X="13" Y="-10"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="160" Y="64"/>
+</StartPointGeometry>
+<SplineGeometry>
+<Point X="172" Y="115"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="176" Y="160"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S3" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_down"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="116" Y="172"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SPEC" Name="robot_exit_conv">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="68" Y="67"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-1" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="163" Y="68"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2">
+<PointGeometry>
+<Point X="163" Y="163"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S3">
+<PointGeometry>
+<Point X="68" Y="163"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_forward"/>
+<LabelGeometry Anchor="NW">
+<Point X="-47" Y="-28"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="115" Y="58"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off2"/>
+<LabelGeometry Anchor="NW">
+<Point X="8" Y="-17"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="172" Y="115"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="224" Y="80"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S2" Target="S3">
+<LabelBlock>
+<SimpleIdentifier Name="drop"/>
+<LabelGeometry Anchor="NW">
+<Point X="-17" Y="14"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="115" Y="172"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="32" Y="160"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S3" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="-61" Y="-12"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="58" Y="115"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="exit_conveyor">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="idle">
+<PointGeometry>
+<Point X="56" Y="57"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-21" Y="7"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="delivering">
+<PointGeometry>
+<Point X="118" Y="120"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="delivering" Target="idle">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="-48" Y="8"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="79" Y="96"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="idle" Target="delivering">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off2"/>
+<LabelGeometry Anchor="NW">
+<Point X="8" Y="-23"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="95" Y="81"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SUPERVISOR" Name="sup(entry_conveyor||exit_conveyor||robot||robot_entry_conv||robot_exit_conv)">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="q0">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="88" Y="69"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q1">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="433" Y="291"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q10">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="61" Y="178"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q11">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="111" Y="535"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q12">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="453" Y="222"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q13">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="415" Y="365"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q14">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="562" Y="303"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q15">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="579" Y="422"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q16">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="345" Y="708"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q17">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="555" Y="773"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q18">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="261" Y="118"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q19">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="213" Y="302"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="571" Y="363"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q20">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="162" Y="100"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q21">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="114" Y="356"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q22">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="203" Y="654"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q23">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="90" Y="500"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q24">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="510" Y="308"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q25">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="480" Y="440"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q26">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="517" Y="436"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q27">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="577" Y="530"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q28">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="392" Y="615"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q29">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="578" Y="678"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q3">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="470" Y="749"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q30">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="148" Y="57"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q31">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="96" Y="264"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q33">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="56" Y="331"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q34">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="215" Y="605"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q4">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="236" Y="205"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q5">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="135" Y="206"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q6">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="499" Y="372"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q7">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="552" Y="483"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q8">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="506" Y="650"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="q9">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="117" Y="155"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="q0" Target="q10">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="63" Y="117"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q1" Target="q13">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="422" Y="325"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q1" Target="q4">
+<LabelBlock>
+<SimpleIdentifier Name="drop"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="336" Y="243"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q10" Target="q33">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="45" Y="253"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q11" Target="q22">
+<LabelBlock>
+<SimpleIdentifier Name="grab"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="150" Y="603"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q11" Target="q23">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="93" Y="522"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q12" Target="q1">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="q12" Target="q18">
+<LabelBlock>
+<SimpleIdentifier Name="drop"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="361" Y="160"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q13" Target="q19">
+<LabelBlock>
+<SimpleIdentifier Name="drop"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="312" Y="335"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q14" Target="q12">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_down2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="515" Y="251"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q14" Target="q2">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="578" Y="328"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q15" Target="q13">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_down2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="q16" Target="q28">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="q16" Target="q3">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="406" Y="738"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q17" Target="q29">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="574" Y="732"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q18" Target="q20">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_back"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="213" Y="101"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q18" Target="q30">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="206" Y="75"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q18" Target="q4">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="q19" Target="q21">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_back"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="q19" Target="q31">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="151" Y="284"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q2" Target="q1">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_down2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="507" Y="324"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q2" Target="q15">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="587" Y="391"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q20" Target="q0">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="122" Y="77"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q20" Target="q5">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="q21" Target="q11">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_down"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="q21" Target="q33">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="79" Y="347"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q22" Target="q16">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_up"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="270" Y="690"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q22" Target="q34">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="205" Y="634"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q23" Target="q34">
+<LabelBlock>
+<SimpleIdentifier Name="grab"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="q24" Target="q12">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="486" Y="257"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q24" Target="q6">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="507" Y="336"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q25" Target="q13">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="443" Y="405"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q26" Target="q14">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="547" Y="367"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q26" Target="q24">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_down2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="520" Y="369"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q26" Target="q7">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="539" Y="462"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q27" Target="q15">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="591" Y="479"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q27" Target="q25">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_down2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="528" Y="493"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q28" Target="q26">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_forward"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="457" Y="531"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q28" Target="q8">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="449" Y="638"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q29" Target="q27">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_forward"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="587" Y="609"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q3" Target="q17">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="514" Y="770"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q3" Target="q8">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="490" Y="706"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q30" Target="q0">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_back"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="113" Y="52"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q30" Target="q9">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="128" Y="97"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q31" Target="q33">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_back"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="67" Y="297"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q33" Target="q23">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_down"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="63" Y="418"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q34" Target="q28">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_up"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="302" Y="614"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q4" Target="q19">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="q4" Target="q5">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_back"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="184" Y="203"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q4" Target="q9">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="175" Y="174"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q5" Target="q10">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="q5" Target="q21">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="q6" Target="q1">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="467" Y="328"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q6" Target="q25">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="487" Y="407"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q7" Target="q2">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="568" Y="425"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q7" Target="q27">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="571" Y="510"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q7" Target="q6">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_down2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="532" Y="428"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q8" Target="q29">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="545" Y="670"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q8" Target="q7">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_forward"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="533" Y="572"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q9" Target="q10">
+<LabelBlock>
+<SimpleIdentifier Name="move_arm_back"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="82" Y="161"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="q9" Target="q31">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="99" Y="206"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+</ComponentList>
+</Module>
