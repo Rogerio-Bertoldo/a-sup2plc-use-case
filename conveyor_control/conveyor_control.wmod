@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Module xmlns="http://waters.sourceforge.net/xsd/module" xmlns:B="http://waters.sourceforge.net/xsd/base" Name="basic">
+<EventDeclList>
+<EventDecl Kind="CONTROLLABLE" Name="btn_pressed"/>
+<EventDecl Kind="CONTROLLABLE" Name="turn_on"/>
+<EventDecl Kind="CONTROLLABLE" Name="turn_off"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="at_entry"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="at_exit"/>
+<EventDecl Kind="PROPOSITION" Name=":accepting"/>
+</EventDeclList>
+<ComponentList>
+<SimpleComponent Kind="PLANT" Name="G1">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="69" Y="60"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-29" Y="-3"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="62" Y="158"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2">
+<PointGeometry>
+<Point X="232" Y="272"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S3">
+<PointGeometry>
+<Point X="172" Y="193"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="7" Y="-12"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S4">
+<PointGeometry>
+<Point X="165" Y="78"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="11" Y="-3"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="btn_pressed"/>
+<LabelGeometry Anchor="NW">
+<Point X="-79" Y="-4"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="55" Y="106"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2" Target="S3">
+<LabelBlock>
+<SimpleIdentifier Name="at_exit"/>
+<LabelGeometry Anchor="NW">
+<Point X="-50" Y="1"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="192" Y="128"/>
+</StartPointGeometry>
+<SplineGeometry>
+<Point X="197" Y="244"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="161" Y="176"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S3" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="at_entry"/>
+<LabelGeometry Anchor="NW">
+<Point X="11" Y="-10"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="160" Y="176"/>
+</StartPointGeometry>
+<SplineGeometry>
+<Point X="215" Y="230"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S3">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on"/>
+<LabelGeometry Anchor="NW">
+<Point X="-22" Y="-26"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="113" Y="182"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S3" Target="S4">
+<LabelBlock>
+<SimpleIdentifier Name="btn_pressed"/>
+<LabelGeometry Anchor="NW">
+<Point X="15" Y="1"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="175" Y="133"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S4" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off"/>
+<LabelGeometry Anchor="NW">
+<Point X="-6" Y="-26"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="116" Y="59"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SUPERVISOR" Name="sup(G1)">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="S1"/>
+<SimpleNode Name="S2"/>
+<SimpleNode Name="S3"/>
+<SimpleNode Name="S4"/>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="btn_pressed"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S1" Target="S3">
+<LabelBlock>
+<SimpleIdentifier Name="turn_on"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S2" Target="S3">
+<LabelBlock>
+<SimpleIdentifier Name="at_exit"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S3" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="at_entry"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S3" Target="S4">
+<LabelBlock>
+<SimpleIdentifier Name="btn_pressed"/>
+</LabelBlock>
+</Edge>
+<Edge Source="S4" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="turn_off"/>
+</LabelBlock>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+</ComponentList>
+</Module>
