@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Module xmlns="http://waters.sourceforge.net/xsd/module" xmlns:B="http://waters.sourceforge.net/xsd/base" Name="sorting_by_height">
+<EventDeclList>
+<EventDecl Kind="CONTROLLABLE" Name="feeder_conveyor_on"/>
+<EventDecl Kind="CONTROLLABLE" Name="feeder_conveyor_off"/>
+<EventDecl Kind="PROPOSITION" Name=":accepting"/>
+<EventDecl Kind="CONTROLLABLE" Name="start_unloading_left"/>
+<EventDecl Kind="CONTROLLABLE" Name="start_unloading_right"/>
+<EventDecl Kind="CONTROLLABLE" Name="turn_to_load"/>
+<EventDecl Kind="CONTROLLABLE" Name="turn_to_unload"/>
+<EventDecl Kind="CONTROLLABLE" Name="start_loading"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="at_entry"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="at_turn_entry"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="high_box"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="low_box"/>
+<EventDecl Kind="CONTROLLABLE" Name="stop_loading"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="loaded"/>
+<EventDecl Kind="CONTROLLABLE" Name="stop_unloading_right"/>
+<EventDecl Kind="CONTROLLABLE" Name="stop_unloading_left"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="at_right_entry"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="at_left_entry"/>
+</EventDeclList>
+<ComponentList>
+<SimpleComponent Kind="PLANT" Name="feeder_conveyor">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="80" Y="112"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="240" Y="112"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="feeder_conveyor_on"/>
+<LabelGeometry Anchor="NW">
+<Point X="-60" Y="-27"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="160" Y="96"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="feeder_conveyor_off"/>
+<LabelGeometry Anchor="NW">
+<Point X="-51" Y="4"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="160" Y="128"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="turning_table">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="80" Y="64"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="256" Y="64"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="turn_to_unload"/>
+<LabelGeometry Anchor="NW">
+<Point X="-42" Y="-28"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="168" Y="48"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="turn_to_load"/>
+<LabelGeometry Anchor="NW">
+<Point X="-33" Y="8"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="168" Y="80"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="loading_on_table">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="80" Y="80"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="224" Y="80"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="start_loading"/>
+<LabelGeometry Anchor="NW">
+<Point X="-35" Y="-23"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="152" Y="64"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="stop_loading"/>
+<LabelGeometry Anchor="NW">
+<Point X="-32" Y="8"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="152" Y="96"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="unloading_at_right">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="48" Y="80"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="176" Y="80"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="start_unloading_right"/>
+<LabelGeometry Anchor="NW">
+<Point X="-49" Y="-23"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="112" Y="64"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="stop_unloading_right"/>
+<LabelGeometry Anchor="NW">
+<Point X="-49" Y="8"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="112" Y="96"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="unloading_at_left">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="48" Y="80"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="176" Y="80"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="start_unloading_left"/>
+<LabelGeometry Anchor="NW">
+<Point X="-49" Y="-26"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="112" Y="64"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="stop_unloading_left"/>
+<LabelGeometry Anchor="NW">
+<Point X="-49" Y="8"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="112" Y="96"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SPEC" Name="spec_feeder_conveyor">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="93" Y="112"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="194" Y="129"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2">
+<PointGeometry>
+<Point X="176" Y="230"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S3">
+<PointGeometry>
+<Point X="78" Y="211"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="feeder_conveyor_on"/>
+<LabelGeometry Anchor="NW">
+<Point X="-38" Y="-29"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="145" Y="112"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="at_entry"/>
+<LabelGeometry Anchor="NW">
+<Point X="9" Y="-1"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="194" Y="181"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="183" Y="271"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S2" Target="S3">
+<LabelBlock>
+<SimpleIdentifier Name="feeder_conveyor_off"/>
+<LabelGeometry Anchor="NW">
+<Point X="-74" Y="12"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="125" Y="230"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S3" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="turn_to_load"/>
+<LabelGeometry Anchor="NW">
+<Point X="-75" Y="-9"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="76" Y="160"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="turn_to_load"/>
+<LabelGeometry Anchor="NW">
+<Point X="12" Y="2"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="244" Y="123"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="turn_to_load"/>
+<LabelGeometry Anchor="NW">
+<Point X="14" Y="-18"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="202" Y="263"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="turn_to_load"/>
+<LabelGeometry Anchor="NW">
+<Point X="-21" Y="-29"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="60" Y="68"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SPEC" Name="spec_loading">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="67" Y="68"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2">
+<PointGeometry>
+<Point X="162" Y="66"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S3">
+<PointGeometry>
+<Point X="164" Y="161"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="70" Y="163"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="at_turn_entry"/>
+<LabelGeometry Anchor="NW">
+<Point X="-34" Y="-26"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="113" Y="119"/>
+</StartPointGeometry>
+<SplineGeometry>
+<Point X="114" Y="57"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2" Target="S3">
+<LabelBlock>
+<SimpleIdentifier Name="start_loading"/>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="-5"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="173" Y="113"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="67" Y="162"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="stop_loading"/>
+<LabelGeometry Anchor="NW">
+<Point X="-76" Y="-1"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="96" Y="208"/>
+</StartPointGeometry>
+<SplineGeometry>
+<Point X="58" Y="116"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S3" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="loaded"/>
+<LabelGeometry Anchor="NW">
+<Point X="-9" Y="8"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="117" Y="172"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SPEC" Name="spec_turning_to_unload">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="56" Y="57"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2">
+<PointGeometry>
+<Point X="117" Y="121"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S2" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="turn_to_unload"/>
+<LabelGeometry Anchor="NW">
+<Point X="-85" Y="3"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="112" Y="32"/>
+</StartPointGeometry>
+<SplineGeometry>
+<Point X="78" Y="97"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="58" Y="57"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S0" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="stop_loading"/>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="-20"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="94" Y="81"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SPEC" Name="spec_unloading">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="96" Y="80"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="240" Y="80"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="turn_to_unload"/>
+<LabelGeometry Anchor="NW">
+<Point X="-42" Y="-23"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="168" Y="64"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="start_unloading_left"/>
+<SimpleIdentifier Name="start_unloading_right"/>
+<LabelGeometry Anchor="NW">
+<Point X="-50" Y="5"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="168" Y="96"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SPEC" Name="spec_unloading_low_box">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="68" Y="68"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S5">
+<PointGeometry>
+<Point X="163" Y="68"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="163" Y="162"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2">
+<PointGeometry>
+<Point X="68" Y="163"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S5">
+<LabelBlock>
+<SimpleIdentifier Name="low_box"/>
+<LabelGeometry Anchor="NW">
+<Point X="-28" Y="-23"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="75" Y="73"/>
+</StartPointGeometry>
+<SplineGeometry>
+<Point X="115" Y="58"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="256" Y="93"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S5" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="start_unloading_right"/>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="-11"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="172" Y="115"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="160" Y="192"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S1" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="at_right_entry"/>
+<LabelGeometry Anchor="NW">
+<Point X="-26" Y="13"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="116" Y="172"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="stop_unloading_right"/>
+<LabelGeometry Anchor="NW">
+<Point X="-122" Y="-5"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="58" Y="115"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SPEC" Name="spec_unloading_high_box">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="68" Y="67"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="8" Y="-4"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S5">
+<PointGeometry>
+<Point X="163" Y="68"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="163" Y="163"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2">
+<PointGeometry>
+<Point X="68" Y="163"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S5">
+<LabelBlock>
+<SimpleIdentifier Name="high_box"/>
+<LabelGeometry Anchor="NW">
+<Point X="-22" Y="-26"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="154" Y="-33"/>
+</StartPointGeometry>
+<SplineGeometry>
+<Point X="115" Y="58"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="424" Y="21"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S5" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="start_unloading_left"/>
+<LabelGeometry Anchor="NW">
+<Point X="7" Y="-9"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="172" Y="116"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="192" Y="176"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S1" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="at_left_entry"/>
+<LabelGeometry Anchor="NW">
+<Point X="-21" Y="7"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="115" Y="172"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="stop_unloading_left"/>
+<LabelGeometry Anchor="NW">
+<Point X="-114" Y="-7"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="58" Y="115"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SPEC" Name="spec_turning_to_load">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="57" Y="56"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2">
+<PointGeometry>
+<Point X="120" Y="118"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S2" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="turn_to_load"/>
+<LabelGeometry Anchor="NW">
+<Point X="-73" Y="1"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="112" Y="32"/>
+</StartPointGeometry>
+<SplineGeometry>
+<Point X="81" Y="95"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="57" Y="57"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S0" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="stop_unloading_left"/>
+<SimpleIdentifier Name="stop_unloading_right"/>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="-33"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="96" Y="79"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SPEC" Name="spec_before_loading">
+<Graph>
+<NodeList>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="164" Y="69"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2">
+<PointGeometry>
+<Point X="67" Y="162"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Initial="true" Name="S6">
+<PointGeometry>
+<Point X="69" Y="67"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S0">
+<PointGeometry>
+<Point X="162" Y="164"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S6" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="at_entry"/>
+<LabelGeometry Anchor="NW">
+<Point X="-22" Y="-26"/>
+</LabelGeometry>
+</LabelBlock>
+<StartPointGeometry>
+<Point X="75" Y="136"/>
+</StartPointGeometry>
+<SplineGeometry>
+<Point X="116" Y="58"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="265" Y="71"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="high_box"/>
+<SimpleIdentifier Name="low_box"/>
+<LabelGeometry Anchor="NW">
+<Point X="7" Y="-16"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="172" Y="117"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="144" Y="208"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S2" Target="S6">
+<LabelBlock>
+<SimpleIdentifier Name="at_turn_entry"/>
+<LabelGeometry Anchor="NW">
+<Point X="-81" Y="2"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="58" Y="114"/>
+</SplineGeometry>
+<EndPointGeometry>
+<Point X="59" Y="73"/>
+</EndPointGeometry>
+</Edge>
+<Edge Source="S0" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="feeder_conveyor_off"/>
+<LabelGeometry Anchor="NW">
+<Point X="-23" Y="11"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="114" Y="172"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SUPERVISOR" Name="supervisor">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="q0">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q1">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q10">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q11">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q12">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q13">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q14">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q15">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q16">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q17">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q18">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q19">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q20">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q21">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q22">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q4">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q5">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q6">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q7">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q8">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+<SimpleNode Name="q9">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="q0" Target="q22">
+<LabelBlock>
+<SimpleIdentifier Name="feeder_conveyor_on"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q1" Target="q13">
+<LabelBlock>
+<SimpleIdentifier Name="at_turn_entry"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q10" Target="q8">
+<LabelBlock>
+<SimpleIdentifier Name="turn_to_unload"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q11" Target="q9">
+<LabelBlock>
+<SimpleIdentifier Name="turn_to_unload"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q12" Target="q0">
+<LabelBlock>
+<SimpleIdentifier Name="turn_to_load"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q13" Target="q17">
+<LabelBlock>
+<SimpleIdentifier Name="start_loading"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q14" Target="q18">
+<LabelBlock>
+<SimpleIdentifier Name="start_loading"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q15" Target="q10">
+<LabelBlock>
+<SimpleIdentifier Name="stop_loading"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q16" Target="q11">
+<LabelBlock>
+<SimpleIdentifier Name="stop_loading"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q17" Target="q15">
+<LabelBlock>
+<SimpleIdentifier Name="loaded"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q18" Target="q16">
+<LabelBlock>
+<SimpleIdentifier Name="loaded"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q19" Target="q1">
+<LabelBlock>
+<SimpleIdentifier Name="feeder_conveyor_off"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q2" Target="q14">
+<LabelBlock>
+<SimpleIdentifier Name="at_turn_entry"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q20" Target="q2">
+<LabelBlock>
+<SimpleIdentifier Name="feeder_conveyor_off"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q21" Target="q19">
+<LabelBlock>
+<SimpleIdentifier Name="low_box"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q21" Target="q20">
+<LabelBlock>
+<SimpleIdentifier Name="high_box"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q22" Target="q21">
+<LabelBlock>
+<SimpleIdentifier Name="at_entry"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q4" Target="q5">
+<LabelBlock>
+<SimpleIdentifier Name="at_right_entry"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q5" Target="q12">
+<LabelBlock>
+<SimpleIdentifier Name="stop_unloading_right"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q6" Target="q7">
+<LabelBlock>
+<SimpleIdentifier Name="at_left_entry"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q7" Target="q12">
+<LabelBlock>
+<SimpleIdentifier Name="stop_unloading_left"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q8" Target="q4">
+<LabelBlock>
+<SimpleIdentifier Name="start_unloading_right"/>
+</LabelBlock>
+</Edge>
+<Edge Source="q9" Target="q6">
+<LabelBlock>
+<SimpleIdentifier Name="start_unloading_left"/>
+</LabelBlock>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+</ComponentList>
+</Module>
